@@ -23,7 +23,6 @@ class PhoneBook extends Component {
     }
 
     handleSearchContactsByLastName = (searchTerm) => {
-        console.log(searchTerm);
         const matches = this.state.contacts.filter((contact) => {
             return contact.lastName.includes(searchTerm);
         });
@@ -33,11 +32,24 @@ class PhoneBook extends Component {
     }
 
     handleSearchContactsByLetter = (letter) => {
-        console.log(letter);
+        const matches = this.state.contacts.filter((contact) => {
+            return contact.lastName[0] === letter;
+        });
+        this.setState(() => {
+            return { contactsToDisplay: matches }
+        });
     }
 
     handleRemoveContact = (telephoneNumber) => {
-        console.log(telephoneNumber);
+        const contactsToKeep = this.state.contacts.filter((contact) => {
+            return contact.telephoneNumber !== telephoneNumber;
+        });
+        this.setState(() => {
+            return {
+                contacts: contactsToKeep,
+                contactsToDisplay: contactsToKeep
+            }
+        });
     }
 
     render() {
