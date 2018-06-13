@@ -1,14 +1,23 @@
 import React from "react";
 
-const Search = () => {
+const Search = (props) => {
     const alphabet = "abcdefghijklmnopqrstuvwxyz".split('');
     return (
         <div>
-            <input type="text" placeholder="Search Contacts by Last Name" autoComplete="off"></input>
+            <input
+                type="text"
+                placeholder="Search Contacts by Last Name"
+                autoComplete="off"
+                onChange={props.handleTakeSearchInput}
+            ></input>
             <div>
-               {alphabet.map((letter) => {
-                   return <button>{letter.toUpperCase()}</button>
-               })}
+                {alphabet.map((letter, i) => {
+                    return (
+                        <button 
+                            key={i} onClick={(e) => props.handleSearchContactsByLetter(letter)}
+                        >{letter.toUpperCase()}</button>
+                    );
+                })}
             </div>
         </div>
     );

@@ -1,10 +1,20 @@
 import React from "react";
+import Contact from "./contact";
 
-const ContactList = () => {
+const ContactList = (props) => {
     return (
         <div>
             <h3>Your contacts</h3>
-            {/* contact components here */}
+            {props.contactsToDisplay.map((contact, i) => {
+                return (
+                    <Contact 
+                        contact={contact} 
+                        key={i}
+                        handleRemoveContact={props.handleRemoveContact}
+                        />
+                );
+            })}
+            {/* change key to tel number */}
         </div>
     );
 }
